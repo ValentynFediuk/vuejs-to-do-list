@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ToDoInput
+    @create="createToDo"/>
+  <ToDoList
+    :todos="todos"
+  />
+  <button @click="hideCompleted = !hideCompleted">
+    {{ hideCompleted ? 'Show all' : 'Hide completed' }}
+  </button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import { ref } from 'vue'
+import ToDoInput from "@/components/ToDoInput";
+import ToDoList from "@/components/ToDoList";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    ToDoInput,
+    ToDoList
+  },
+  data() {
+
+  },
+  methods: {
+    createToDo(todo) {
+      console.log(todo)
+    }
   }
 }
+
+
+// const newTodo = ref('')
+// const hideCompleted = ref(false)
+
+// const filteredTodos = computed(() => {
+//   return hideCompleted.value
+//       ? todos.value.filter((t) => !t.done)
+//       : todos.value
+// })
+//
+// function removeTodo(todo) {
+//   todos.value = todos.value.filter((t) => t !== todo)
+// }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.done {
+  text-decoration: line-through;
 }
 </style>
