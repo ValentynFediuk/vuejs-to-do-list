@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="addTodo">
-    <input v-model="newTodo" />
+  <form @submit.prevent="createToDo">
+    <input v-model="todo.text" />
     <button>Add Todo</button>
   </form>
 </template>
@@ -12,28 +12,21 @@ let id = 0
 export default {
   data() {
     return {
-      todos: {
-        id: id++,
-        text: 'Learn HTML',
-        done: true
+      todo: {
+        text: 'ffff'
       }
     }
   },
   methods: {
     createToDo() {
-      this.id = id++,
-      this.$emit('create', this.todo),
+      this.todo.id = id++
+      this.$emit('create', this.todo)
       this.todo = {
-        text: ''
+        text: 'di'
       }
     }
   }
 }
-
-// function addTodo() {
-//   todos.value.push({ id: id++, text: newTodo.value, done: false })
-//   newTodo.value = ''
-// }
 
 </script>
 
