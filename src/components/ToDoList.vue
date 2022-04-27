@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="todo in filteredTodos" :key="todo.id">
+    <li v-for="todo in todos" :key="todo.id">
       <input type="checkbox" v-model="todo.done">
       <span :class="{ done: todo.done }">{{ todo.text }}</span>
       <button @click="removeTodo(todo)">X</button>
