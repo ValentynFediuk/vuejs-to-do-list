@@ -20,11 +20,15 @@ export default {
     ToDoList
   },
   data() {
-
+    return {
+      todos: [
+        {id: 1, text: 'Test'}
+      ]
+    }
   },
   methods: {
     createToDo(todo) {
-      console.log(todo)
+      todos.push(todo)
     }
   }
 }
