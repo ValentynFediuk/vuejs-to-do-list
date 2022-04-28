@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       todo: {
-        text: 'ffff'
+        text: ''
       }
     }
   },
@@ -22,7 +22,7 @@ export default {
       this.todo.id = id++
       this.$emit('create', this.todo)
       this.todo = {
-        text: 'di'
+        text: ''
       }
     }
   }
