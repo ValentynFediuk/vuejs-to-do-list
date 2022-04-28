@@ -4,9 +4,9 @@
   <ToDoList
     :todos="todos"
   />
-  <button @click="hideCompleted = !hideCompleted">
-    {{ hideCompleted ? 'Show all' : 'Hide completed' }}
-  </button>
+<!--  <button @click="hideCompleted = !hideCompleted">-->
+<!--    {{ hideCompleted ? 'Show all' : 'Hide completed' }}-->
+<!--  </button>-->
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     createToDo(todo) {
-      todos.push(todo)
+      this.todos.push(todo)
     }
   }
 }
