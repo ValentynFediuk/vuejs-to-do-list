@@ -1,14 +1,18 @@
 <template>
   <ul>
-    <li v-for="todo in todos" :key="todo.id">
-      <span :class="{ done: todo.done }">{{ todo.text }}</span>
-      <button>X</button>
-    </li>
+    <ToDoItem
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @remove="$emit('remove', todo)"
+    />
   </ul>
 </template>
 
 <script>
+import ToDoItem from "@/components/ToDoItem";
 export default {
+  components: {ToDoItem},
   props: {
     todos: {
       type: Array,

@@ -1,37 +1,42 @@
 <template>
-  <ToDoInput
-    @create="createToDo"/>
-  <ToDoList
-    :todos="todos"
-  />
+  <nav>
+    <router-link to="/">Home</router-link>
+    <router-link to="/feed">Feed</router-link>
+    <router-link to="/register">Register</router-link>
+    <router-link to="/sign-in">Login</router-link>
+    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
+  </nav>
+  <router-view />
 </template>
 
-<script>
-import ToDoInput from "@/components/ToDoInput";
-import ToDoList from "@/components/ToDoList";
+<script setup>
+import {onMounted, ref} from "vue";
+import {getAuth, onAuthStateChanged, signOut} from "firebase/auth";
+import {useRouter} from "vue-router";
 
-export default {
-  components: {
-    ToDoInput,
-    ToDoList
-  },
-  data() {
-    return {
-      todos: [
-        {id: 1, text: 'Test'}
-      ]
+const router = useRouter()
+const isLoggedIn = ref(false)
+
+let auth;
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false
     }
-  },
-  methods: {
-    createToDo(todo) {
-      this.todos.push(todo)
-    }
-  }
+  })
+})
+
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
 }
+
 </script>
 
 <style>
 
 </style>
-
-<!--https://stackoverflow.com/questions/65316893/vue-pagination-array-of-objects-->
