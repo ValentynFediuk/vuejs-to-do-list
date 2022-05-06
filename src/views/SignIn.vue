@@ -1,10 +1,12 @@
 <template>
-  <h1>Create an Account</h1>
-  <p><input type="text" placeholder="Email" v-model="email" /></p>
-  <p><input type="password" placeholder="Password" v-model="password" /></p>
-  <p v-if="errMsg">{{errMsg}}</p>
-  <p><button @click="register">Submit</button></p>
-  <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+  <h1>Sign In</h1>
+  <form>
+    <input type="text" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <p v-if="errMsg">{{errMsg}}</p>
+    <button @click="register">Submit</button>
+    <button @click="signInWithGoogle">Sign In With Google</button>
+  </form>
 </template>
 
 <script setup>

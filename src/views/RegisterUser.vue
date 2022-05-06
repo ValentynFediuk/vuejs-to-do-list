@@ -1,9 +1,11 @@
 <template>
 <h1>Create an Account</h1>
-  <p><input type="text" placeholder="Email" v-model="email" /></p>
-  <p><input type="password" placeholder="Password" v-model="password" /></p>
-  <p><button @click="register">Submit</button></p>
-  <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+  <form>
+    <input type="text" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <button @click="register">Submit</button>
+    <button @click="signInWithGoogle">Sign In With Google</button>
+  </form>
 </template>
 
 <script setup>

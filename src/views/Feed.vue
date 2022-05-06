@@ -1,10 +1,12 @@
-<template>
+<template class="feed">
+
     <ToDoInput
-      @create="createToDo"/>
+        @create="createToDo"/>
     <ToDoList
-      :todos="todos"
-      @remove="removeToDo"
+        :todos="todos"
+        @remove="removeToDo"
     />
+
 </template>
 
 <script>
@@ -37,7 +39,9 @@ export default {
 </script>
 
 <style>
-
+  .feed {
+    margin-top: 20px;
+  }
 </style>
 
 <!--https://stackoverflow.com/questions/65316893/vue-pagination-array-of-objects-->
