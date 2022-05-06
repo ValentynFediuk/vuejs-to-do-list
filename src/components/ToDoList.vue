@@ -24,5 +24,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  ul {
+    margin: 0 auto;
+    width: 500px;
+    padding-left: 0;
+  }
 </style>
