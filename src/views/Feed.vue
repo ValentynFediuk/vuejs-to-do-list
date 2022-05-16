@@ -31,6 +31,7 @@ data() {
     },
     removeToDo(todo) {
       this.todos = this.todos.filter(t => t.id !== todo.id)
+      localStorage.setItem("localTodos", JSON.stringify(this.todos))
     },
   }
 }

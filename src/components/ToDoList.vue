@@ -5,6 +5,7 @@
         :key="todo.id"
         :todo="todo"
         @delete="$emit('remove', todo)"
+        :class="{editing: todo === editedTodo }"
     />
   </ul>
 </template>
@@ -17,7 +18,8 @@ export default {
   props: {
     todos: {
       type: Array,
-      required: true
+      required: true,
+      editedTodo: String
     }
   }
 }
