@@ -1,8 +1,18 @@
 <template>
   <div class="ToDo">
-      <span :class="{ done: todo.done }">{{ todo.text }}</span>
+      <span @dblclick="editToDo(todo)" :class="{ done: todo.done }">{{ todo.text }}</span>
+      <input
+        v-if="todo === editedTodo"
+        class="edit"
+        type="text"
+        v-model="newTodo.text"
+        @vnode-mounted="({ el }) => el.focus()"
+        @blur="doneEdit(todo)"
+        @keyup.enter="doneEdit(todo)"
+        @keyup.escape="cancelEdit(todo)"
+      >
       <div class="ToDo-btns">
-        <button @click="$emit('remove', todo)">X</button>
+        <button @click="$emit('delete', todo)">X</button>
         <button>Edit</button>
       </div>
   </div>
@@ -10,10 +20,37 @@
 
 <script>
 export default {
+  data() {
+    return {
+      beforeEditCache: '',
+      editedTodo: this.todo.text,
+      newTodo: ''
+    }
+  },
   props: {
     todo: {
       type: Object,
       required: true,
+    }
+  },
+  methods: {
+    editToDo(todo) {
+      this.beforeEditCache = todo.text
+      this.editedTodo = this.newTodo
+    },
+    cancelEdit(todo) {
+      this.editedTodo.value = null
+      todo.text = this.beforeEditCache
+    },
+    doneEdit(todo) {
+      if (this.editedTodo) {
+        this.editedTodo.value = null
+        todo.text = todo.text.trim()
+        if (!todo.text) this.removeToDo(todo)
+      }
+    },
+    removeToDo() {
+      return
     }
   }
 }
