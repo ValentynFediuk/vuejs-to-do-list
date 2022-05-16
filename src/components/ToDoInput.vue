@@ -7,8 +7,6 @@
 
 <script>
 
-let id = 0
-
 export default {
   data() {
     return {
@@ -19,10 +17,10 @@ export default {
   },
   methods: {
     createToDo() {
-      this.todo.id = id++
+      this.todo.id = Math.floor(Math.random() * 5000)
       this.$emit('create', this.todo)
       this.todo = {
-        text: ''
+      text: ''
       }
     }
   }
