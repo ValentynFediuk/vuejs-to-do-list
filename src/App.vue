@@ -39,11 +39,38 @@ const handleSignOut = () => {
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bilbo&display=swap');
+
   body {
     background: black;
     color: snow;
     font-family: 'Bilbo', cursive;
     font-size: 20px;
+  }
+
+  button {
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  a:hover {
+    background: snow;
+    color: black;
+  }
+  button:hover {
+    background: green;
+    color: snow;
+  }
+
+  input {
+    font-family: 'Bilbo', cursive;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 15px;
+    border: 5px solid #2d2a2a;
+  }
+
+  input:focus {
+    outline: none;
   }
   nav {
     width: 700px;
@@ -56,7 +83,7 @@ const handleSignOut = () => {
     border-radius: 15px;
     margin-bottom: 20px;
   }
-  nav > * {
+  nav > a {
     background: green;
     padding: 10px 20px;
     text-decoration: none;
@@ -66,11 +93,7 @@ const handleSignOut = () => {
     font-family: 'Bilbo', cursive;
     color: snow;
   }
-  nav > *:hover {
-    background: snow;
-    color: black;
-    font-size: 25px;
-  }
+
   h1 {
     text-align: center;
   }
@@ -81,6 +104,7 @@ const handleSignOut = () => {
     flex-direction: column;
     justify-content: center;
   }
+
   form > * {
     padding: 10px;
     margin-bottom: 10px;
@@ -88,13 +112,6 @@ const handleSignOut = () => {
     font-family: 'Bilbo', cursive;
     text-transform: uppercase;
     text-align: center;
-  }
-  form button:hover {
-    color: green;
-    background: snow;
-    transition: font-size 0.5s ease-in-out;
-    cursor: pointer;
-    font-size: 25px;
   }
 
 </style>
