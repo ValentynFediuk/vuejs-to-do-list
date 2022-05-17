@@ -15,6 +15,12 @@ export default {
       }
     }
   },
+  props: {
+    newTodo: {
+      type: Object,
+      required: false,
+    }
+  },
   methods: {
     createToDo() {
       this.todo.id = Math.floor(Math.random() * 5000)
