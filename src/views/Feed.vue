@@ -5,6 +5,7 @@
   <ToDoList
       :todos="todos"
       @remove="removeToDo"
+      @edit="editTodo"
   />
 
 </template>
@@ -26,6 +27,11 @@ data() {
 },
   methods: {
     createToDo(todo) {
+      if (todo.text.trim().length === 0) {
+        this.todos = this.todos.filter(t => t.id !== todo.id)
+        return
+      }
+      todo.text = todo.text.trim()
       this.todos.push(todo)
       localStorage.setItem("localTodos", JSON.stringify(this.todos))
     },
@@ -33,6 +39,15 @@ data() {
       this.todos = this.todos.filter(t => t.id !== todo.id)
       localStorage.setItem("localTodos", JSON.stringify(this.todos))
     },
+    editTodo(todo) {
+      if (todo.text.trim().length === 0) {
+        this.todos = this.todos.filter(t => t.id !== todo.id)
+        localStorage.setItem("localTodos", JSON.stringify(this.todos))
+        return
+      }
+      todo.text = todo.text.trim()
+      localStorage.setItem("localTodos", JSON.stringify(this.todos))
+    }
   }
 }
 </script>
