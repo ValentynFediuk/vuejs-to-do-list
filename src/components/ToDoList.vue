@@ -1,11 +1,11 @@
 <template>
   <ul>
     <ToDoItem
-        @clicked="onClickChild"
         v-for="todo in todos"
         :key="todo.id"
         :todo="todo"
         @delete="$emit('remove', todo)"
+        @edited="$emit('edit', todo)"
     />
   </ul>
 </template>
@@ -15,20 +15,10 @@ import ToDoItem from "@/components/ToDoItem";
 
 export default {
   components: {ToDoItem},
-  data() {
-    return {
-      newTodos: []
-    }
-  },
   props: {
     todos: {
       type: Array,
       required: true,
-    }
-  },
-  methods: {
-    onClickChild(value) {
-      this.newTodos = JSON.parse(JSON.stringify(value))
     }
   }
 }

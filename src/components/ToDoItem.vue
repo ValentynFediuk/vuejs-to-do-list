@@ -7,7 +7,7 @@
         v-if="todo === editedTodo"
         class="edit"
         type="text"
-        v-model="newTodo.text"
+        v-model="editedTodo.text"
         @vnode-mounted="({ el }) => el.focus()"
         @blur="doneEdit(newTodo)"
         @keyup.enter="doneEdit(todo)"
@@ -15,7 +15,7 @@
     >
 
     <div class="ToDo-btns">
-      <button @click="$emit('delete', 'someValue')">X</button>
+      <button @click="$emit('delete')">X</button>
     </div>
   </div>
 </template>
@@ -25,9 +25,6 @@ export default {
   data() {
     return {
       beforeEditCache: '',
-      newTodo: {
-        text: ''
-      },
       editedTodo: {
         text: ''
       }
@@ -45,13 +42,12 @@ export default {
       this.editedTodo = this.todo
     },
     doneEdit() {
-      this.newTodo = this.editedTodo
-      this.$emit('clicked', this.editedTodo)
+      this.$emit('edited', this.editedTodo)
       this.editedTodo = null
     },
     removeToDo(value) {
-      this.$emit('clicked', value)
-    },
+      this.$emit('edited', value)
+    }
   }
 }
 </script>
@@ -60,9 +56,12 @@ export default {
 .ToDo {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   border-top: 1px solid snow;
   border-bottom: 1px solid snow;
+  min-height: 60px;
+  position: relative;
 }
 
 form {
@@ -71,11 +70,11 @@ form {
 
 .ToDo-btns {
   display: flex;
-  margin-left: 20px;
+  margin-left: 18px;
 }
 
 .ToDo-btns button {
-  padding: 5px 50px;
+  padding: 10px 50px;
   margin-left: 20px;
   border-radius: 15px;
   border: 1px black solid;
@@ -89,5 +88,11 @@ span {
 
 .edit {
   position: absolute;
+  left: 5px;
+  background: #000;
+  font-size: 30px;
+  color: snow;
+  outline: none;
+  border: none;
 }
 </style>
